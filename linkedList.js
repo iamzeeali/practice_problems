@@ -9,23 +9,25 @@ class Node {
 // LinkedList class managing the linked list
 class LinkedList {
     constructor() {
-        this.head = null;  // Reference to the first node
-        this.tail = null;  // Reference to the last node
-        this.size = 0;     // Initialize the size of the list
+        this.head = null;
+        this.size = 0;
     }
 
+    // Check if the list is empty
     isEmpty() {
         return this.size === 0;
     }
 
+    // Get the number of nodes in the list
     getSize() {
         return this.size;
     }
 
+    // Add a new node with the specified value at the beginning of the list
     prepend(value) {
         const newNode = new Node(value);
         if (this.isEmpty()) {
-            this.head = this.tail = newNode;
+            this.head = newNode;
         } else {
             newNode.next = this.head;
             this.head = newNode;
@@ -33,34 +35,35 @@ class LinkedList {
         this.size++;
     }
 
+    // Add a new node with the specified value at the end of the list
     append(value) {
         const newNode = new Node(value);
         if (this.isEmpty()) {
-            this.head = this.tail = newNode;
+            this.head = newNode;
         } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
         }
         this.size++;
     }
 
+    // Insert a new node with the specified value at a specific position
     insert(value, position) {
         if (position < 0 || position > this.size) {
             console.log("Invalid position");
             return;
         }
 
+        const newNode = new Node(value);
+
         if (position === 0) {
             this.prepend(value);
             return;
         }
 
-        if (position === this.size) {
-            this.append(value);
-            return;
-        }
-
-        const newNode = new Node(value);
         let current = this.head;
         let previous = null;
         let index = 0;
@@ -76,6 +79,7 @@ class LinkedList {
         this.size++;
     }
 
+    // Remove the first node with the specified value
     remove(value) {
         if (this.isEmpty()) {
             console.log("List is empty");
@@ -89,14 +93,8 @@ class LinkedList {
             if (current.value === value) {
                 if (!previous) {  // Node to remove is the head
                     this.head = current.next;
-                    if (this.head === null) {
-                        this.tail = null;
-                    }
                 } else {
                     previous.next = current.next;
-                    if (!current.next) {  // Node to remove is the tail
-                        this.tail = previous;
-                    }
                 }
                 this.size--;
                 return;
@@ -108,6 +106,7 @@ class LinkedList {
         console.log("Node not found");
     }
 
+    // Print the list as a string
     print() {
         if (this.isEmpty()) {
             console.log("List is empty");
@@ -122,6 +121,7 @@ class LinkedList {
         }
     }
 
+    // Find the position of a node with a specific value
     find(value) {
         let current = this.head;
         let index = 0;
@@ -137,16 +137,17 @@ class LinkedList {
         return -1;  // Not found
     }
 
+    // Clear the entire linked list
     clear() {
-        this.head = this.tail = null;
+        this.head = null;
         this.size = 0;
     }
 
+    // Reverse the linked list
     reverse() {
         let previous = null;
         let current = this.head;
         let next = null;
-        this.tail = this.head;
 
         while (current) {
             next = current.next;
@@ -158,14 +159,29 @@ class LinkedList {
         this.head = previous;
     }
 
+    // Get the value of the first node
     getFirst() {
-        return this.head ? this.head.value : null;
+        if (this.isEmpty()) {
+            return null;
+        }
+        return this.head.value;
     }
 
+    // Get the value of the last node
     getLast() {
-        return this.tail ? this.tail.value : null;
+        if (this.isEmpty()) {
+            return null;
+        }
+
+        let current = this.head;
+        while (current.next) {
+            current = current.next;
+        }
+
+        return current.value;
     }
 
+    // Get the value of a node at a specific position
     getAt(position) {
         if (position < 0 || position >= this.size) {
             return null;  // Invalid position
@@ -190,10 +206,10 @@ list.append(20);
 list.prepend(5);
 list.insert(15, 2);
 list.print();  // Output: 5 -> 10 -> 15 -> 20 -> null
-console.log("Tail:", list.getLast());  // Output: Tail: 20
 console.log("Find 15:", list.find(15));  // Output: Find 15: 2
+console.log("First:", list.getFirst());  // Output: First: 5
+console.log("Last:", list.getLast());  // Output: Last: 20
 list.reverse();
 list.print();  // Output: 20 -> 15 -> 10 -> 5 -> null
-console.log("Tail after reverse:", list.getLast());  // Output: Tail after reverse: 5
 list.clear();
 list.print();  // Output: List is empty
