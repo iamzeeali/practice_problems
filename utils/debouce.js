@@ -11,4 +11,5 @@ let debounce = function (func, wait) {
     };
 };
 
-const log = debounce(console.log, 500);
+const log = debounce(console.log('hello'), 50000);
+
