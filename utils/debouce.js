@@ -2,12 +2,12 @@
 // It’s especially useful for scenarios where a function might be triggered frequently, 
 // such as handling user input events like scrolling, resizing, or typing.
 
-let debounce = function (func, wait) {
+let debounce = function (fn, wait) {
     let id;
     return function (...args) {
-        // cancels the second,thirs.. calls if one function call is not completed. 
+        // cancels the second,third, fourth, etc function calls if one function call is not completed. 
         clearTimeout(id);
-        id = setTimeout(() => func(...args), wait);
+        id = setTimeout(() => fn(...args), wait);
     };
 };
 
