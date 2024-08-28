@@ -1,4 +1,6 @@
-// Certainly! Throttling is another technique used to limit the rate at which a function is executed. Unlike debouncing, which delays execution until a specified period of inactivity, throttling ensures that the function is executed at most once in a specified interval.
+// Throttling is another technique used to limit the rate at which a function is executed. 
+// Unlike debouncing, which delays execution until a specified period of inactivity, 
+// throttling ensures that the function is executed at most once in a specified interval.
 
 // ------------------------------------------------------------------------------------------------
 let throttle = function (fn, limit) {
