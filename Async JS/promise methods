@@ -1,0 +1,83 @@
+Promises in JavaScript have several methods to help manage asynchronous operations. Here’s a quick rundown of the key methods:
+
+### 1. **`Promise.resolve(value)`**
+
+- **Usage:** Returns a Promise object that is resolved with the given value.
+- **Example:**
+  ```javascript
+  Promise.resolve(5).then((value) => console.log(value)); // Output: 5
+  ```
+
+### 2. **`Promise.reject(reason)`**
+
+- **Usage:** Returns a Promise object that is rejected with the given reason.
+- **Example:**
+  ```javascript
+  Promise.reject("Error!").catch((reason) => console.log(reason)); // Output: Error!
+  ```
+
+### 3. **`Promise.all(iterable)`**
+
+- **Usage:** Returns a single Promise that resolves when all of the promises in the iterable argument have resolved, or rejects if any of the promises in the iterable reject.
+- **Example:**
+  ```javascript
+  Promise.all([
+    Promise.resolve(1),
+    Promise.resolve(2),
+    Promise.resolve(3),
+  ]).then((values) => console.log(values)); // Output: [1, 2, 3]
+  ```
+
+### 4. **`Promise.allSettled(iterable)`**
+
+- **Usage:** Returns a Promise that resolves after all of the given promises have either resolved or rejected, with an array of objects that each describe the outcome of each promise.
+- **Example:**
+  ```javascript
+  Promise.allSettled([
+    Promise.resolve(1),
+    Promise.reject("Error"),
+    Promise.resolve(3),
+  ]).then((results) => console.log(results));
+  // Output: [
+  //   { status: 'fulfilled', value: 1 },
+  //   { status: 'rejected', reason: 'Error' },
+  //   { status: 'fulfilled', value: 3 }
+  // ]
+  ```
+
+### 5. **`Promise.any(iterable)`**
+
+- **Usage:** Returns a single Promise that resolves as soon as one of the promises in the iterable resolves, or rejects if no promises in the iterable resolve (if all are rejected).
+- **Example:**
+  ```javascript
+  Promise.any([
+    Promise.reject("Error 1"),
+    Promise.resolve(2),
+    Promise.reject("Error 2"),
+  ]).then((value) => console.log(value)); // Output: 2
+  ```
+
+### 6. **`Promise.race(iterable)`**
+
+- **Usage:** Returns a Promise that resolves or rejects as soon as one of the promises in the iterable resolves or rejects, with the value or reason from that promise.
+- **Example:**
+  ```javascript
+  Promise.race([
+    new Promise((resolve, reject) => setTimeout(reject, 500, "Error")),
+    new Promise((resolve) => setTimeout(resolve, 100, "Success")),
+  ])
+    .then((value) => console.log(value)) // Output: Success
+    .catch((reason) => console.log(reason));
+  ```
+
+### 7. **`Promise.finally(onFinally)`**
+
+- **Usage:** Adds a final handler to be invoked regardless of the promise's outcome, whether it was resolved or rejected.
+- **Example:**
+  ```javascript
+  Promise.resolve("Done")
+    .finally(() => console.log("Cleanup"))
+    .then((value) => console.log(value)); // Output: Cleanup\nDone
+  ```
+
+These methods help handle asynchronous operations more effectively and can be combined to manage complex asynchronous workflows.
