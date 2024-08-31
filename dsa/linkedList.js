@@ -1,3 +1,5 @@
+const { reverse } = require('./reverseIterative')
+
 // Node class representing each element in the linked list
 class Node {
     constructor(value) {
@@ -203,13 +205,19 @@ class LinkedList {
 const list = new LinkedList();
 list.append(10);
 list.append(20);
-list.prepend(5);
-list.insert(15, 2);
-list.print();  // Output: 5 -> 10 -> 15 -> 20 -> null
-console.log("Find 15:", list.find(15));  // Output: Find 15: 2
-console.log("First:", list.getFirst());  // Output: First: 5
-console.log("Last:", list.getLast());  // Output: Last: 20
-list.reverse();
-list.print();  // Output: 20 -> 15 -> 10 -> 5 -> null
-list.clear();
-list.print();  // Output: List is empty
+list.append(30);
+list.append(40);
+list.append(50);
+// list.prepend(5);
+// list.insert(15, 2);
+// list.print();  // Output: 5 -> 10 -> 15 -> 20 -> null
+// console.log("Find 15:", list.find(15));  // Output: Find 15: 2
+// console.log("First:", list.getFirst());  // Output: First: 5
+// console.log("Last:", list.getLast());  // Output: Last: 20
+// list.reverse();
+// list.print();  // Output: 20 -> 15 -> 10 -> 5 -> null
+// list.clear();
+list.print();  // Output: List is empty`
+console.log(list)
+// reverse(list.head)
+console.log(list.head)
