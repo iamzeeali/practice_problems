@@ -1,4 +1,6 @@
-// Promises were introduced to address issues with callback hell. A Promise represents a value that might be available now, in the future, or never. They provide a cleaner way to manage asynchronous operations by chaining .then() and .catch() methods.
+// // Promises were introduced to address issues with callback hell. 
+// A Promise represents a value that might be available now, in the future, or never. 
+// They provide a cleaner way to manage asynchronous operations by chaining .then() and .catch() methods.
 
 // --------------------------------------------GET Request------------------------------------
 function getData(url) {

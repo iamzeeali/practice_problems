@@ -1,4 +1,6 @@
-// Callbacks are one of the earliest ways to handle asynchronous operations in JavaScript. A function is passed as an argument to another function and gets executed once the operation completes. However, this can lead to “callback hell” where callbacks are nested within callbacks, making the code hard to manage.
+// // Callbacks are one of the earliest ways to handle asynchronous operations in JavaScript. 
+// A function is passed as an argument to another function and gets executed once the operation completes. 
+// However, this can lead to “callback hell” where callbacks are nested within callbacks, making the code hard to manage.
 
 // --------------------------------------------GET Request------------------------------------
 function getData(url, callback) {

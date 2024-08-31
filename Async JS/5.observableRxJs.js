@@ -1,4 +1,6 @@
-// Observables are a part of the Reactive Extensions for JavaScript (RxJS) and provide a powerful way to handle asynchronous data streams. They are used extensively in Angular and other frameworks. Observables can be thought of as sequences of data over time, and they offer operators to filter, transform, and aggregate data streams.
+// Observables are a part of the Reactive Extensions for JavaScript (RxJS) & provide a powerful way to handle asynchronous data streams. 
+// They are used extensively in Angular and other frameworks. Observables can be thought of as sequences of data over time, 
+// and they offer operators to filter, transform, and aggregate data streams.
 
 // --------------------------------------------GET Request------------------------------------
 import { from } from 'rxjs';

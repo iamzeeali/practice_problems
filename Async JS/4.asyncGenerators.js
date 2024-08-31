@@ -1,4 +1,6 @@
-// Async Generators combine the functionality of generators and async/await. They allow you to produce a sequence of asynchronous results using a generator-like syntax. This is useful for scenarios where you need to handle streams of data or perform multiple asynchronous tasks in sequence.
+// // Async Generators combine the functionality of generators and async/await. T
+// hey allow you to produce a sequence of asynchronous results using a generator-like syntax. 
+// This is useful for scenarios where you need to handle streams of data or perform multiple asynchronous tasks in sequence.
 
 // --------------------------------------------GET Request------------------------------------
 async function* fetchData(urls) {
