@@ -1,0 +1,122 @@
+### Event Bubbling and Event Capturing in JavaScript
+
+**Event Bubbling** and **Event Capturing** are two phases of event propagation in the DOM (Document Object Model).
+
+#### 1. Event Bubbling
+
+- **What is it?**  
+  Event bubbling is a phase where an event starts from the most specific element (the target element) and then bubbles up to the least specific one (the `document` object).
+- **How does it work?**  
+  Suppose you click on a button inside a `div`, which is inside another `div`, and so on. The event first triggers on the button (the event target), then bubbles up to its parent `div`, then to its grandparent `div`, and so on, until it reaches the `document`.
+
+- **Example:**
+
+  ```html
+  <div id="parent">
+    <button id="child">Click Me!</button>
+  </div>
+
+  <script>
+    document.getElementById("parent").addEventListener("click", () => {
+      console.log("Parent DIV clicked");
+    });
+
+    document.getElementById("child").addEventListener("click", () => {
+      console.log("Button clicked");
+    });
+  </script>
+  ```
+
+  - If you click the button, the console will show:
+    ```
+    Button clicked
+    Parent DIV clicked
+    ```
+  - This shows the event starting from the button and bubbling up to the parent `div`.
+
+#### 2. Event Capturing (or Event Trickling)
+
+- **What is it?**  
+  Event capturing is the opposite of event bubbling. The event is first captured by the least specific element (like the `document`) and then trickles down to the most specific element (the event target).
+
+- **How does it work?**  
+  In the capturing phase, if you click on the button inside nested `div`s, the event is first captured by the outermost element and then passed down to the innermost target element.
+
+- **Example:**
+
+  ```html
+  <div id="parent">
+    <button id="child">Click Me!</button>
+  </div>
+
+  <script>
+    document.getElementById("parent").addEventListener(
+      "click",
+      () => {
+        console.log("Parent DIV clicked");
+      },
+      true
+    ); // true indicates capturing phase
+
+    document.getElementById("child").addEventListener(
+      "click",
+      () => {
+        console.log("Button clicked");
+      },
+      true
+    ); // true indicates capturing phase
+  </script>
+  ```
+
+  - If you click the button, the console will show:
+    ```
+    Parent DIV clicked
+    Button clicked
+    ```
+  - This shows the event starting from the parent `div` and capturing down to the button.
+
+### Controlling Event Propagation
+
+JavaScript provides methods to control the event propagation during the bubbling or capturing phases:
+
+1. **`event.stopPropagation()`**
+
+   - **What it does:**  
+     Stops the event from propagating further in the capturing or bubbling phases.
+   - **Example:**
+     ```javascript
+     document.getElementById("child").addEventListener("click", (event) => {
+       event.stopPropagation(); // Stops here, parent won't receive the event
+       console.log("Button clicked");
+     });
+     ```
+
+2. **`event.stopImmediatePropagation()`**
+
+   - **What it does:**  
+     Stops the event from propagating further and also prevents any other event listeners on the same element from being triggered.
+   - **Example:**
+
+     ```javascript
+     document.getElementById("child").addEventListener("click", (event) => {
+       event.stopImmediatePropagation();
+       console.log("Button clicked");
+     });
+
+     document.getElementById("child").addEventListener("click", () => {
+       console.log("This will not run");
+     });
+     ```
+
+3. **`event.preventDefault()`**
+   - **What it does:**  
+     Prevents the default action associated with the event (like following a link or submitting a form), but it doesn't stop propagation.
+   - **Example:**
+     ```javascript
+     document.getElementById("child").addEventListener("click", (event) => {
+       event.preventDefault(); // Prevents default action
+       console.log("Button clicked without following a link");
+     });
+     ```
+
+By understanding these concepts and methods, you can effectively manage how events are handled in your JavaScript applications, ensuring that they behave as expected in complex DOM structures.

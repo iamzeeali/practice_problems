@@ -1,0 +1,201 @@
+nagarro
+https://www.geeksforgeeks.org/nagarro-interview-process/?ref=gcse
+
+6 rounds
+apti
+coding based two programs
+mcq
+personal interview
+2nd personaal interview
+hr interview
+
+snippet based questions(Closures, arrays, strings.)
+web apis,
+event delegation
+web workers
+service workers
+web components
+
+Eliminate the duplicate elements from array,
+
+## Pure components, custom hooks, different hooks
+
+1. HTML(
+   web workers(deeper understanding),
+   block and inline level elements
+   css box model
+   children in css
+   css(pseudo classes)
+
+2. Js (
+   scope,
+   this,
+   closures,
+   prototypal inheritance,
+   iffe,
+   bind, apply, call,
+   object.seal,
+   generator functions)
+   ES6 features (You need in depth knowledge how context is formed)
+   How Hoisting works (For this you need to see how js gives memory to it’s variable)
+   Question on SET operator in js
+   What is context and scope in js
+   array.map, reduce, filter
+
+3. ReactJs (
+   memoization,
+   context apis,
+   error boundaries,
+   difference between usecallback, usememo) etc.
+   custom hooks
+   Tell me about JWT
+   What is Virtual DOM
+   State and Props in React
+   Life cycle of React
+   send data from child to parent component
+   styled component in react
+   synthetic event is react
+   pure component
+   controlled and uncontrolled react component
+   higher order component
+   redux thunk
+   redux flow,
+   What is the significance of keys in React?
+   flux
+   List some of the cases when you should use Refs.
+   difference between functional and class components.
+   What is render() in React
+   Why is switch keyword used in React Router v4?
+   Why do we need a Router in React?
+   What is the second argument that can optionally be passed to setState and what is its purpose?
+   useEffect
+   What is the difference between createElement and cloneElement?
+   lazy loading and code spilitting
+   what is a middleware
+   decorators
+   observables
+
+https://www.educative.io/blog/acing-the-javascript-interview-top-questions-explained
+https://www.youtube.com/watch?v=ELNFqCOQhjs
+
+https://myaadhaar.uidai.gov.in/CheckAadhaarStatus
+
+====================================================================================================================
+HCL
+
+#Interceptor
+Axios interceptors are the default configurations that are added automatically to every request or response that a user receives. It is useful to check response status code for every response that is being received.
+We can add axios interceptor in index.js file like
+
+axios.interceptors.request.use(request => {
+console.log(request)
+return request;
+})
+axios.interceptors.request.use(response => {
+console.log(response)
+return request;
+})
+
+#map()
+The map() method is used for creating a new array from an existing one, applying a function to each one of the elements of the first array.
+
+var new_array = arr.map(function callback(element, index, array) {
+// Return value for new_array
+}[, thisArg])
+
+---
+
+#filter()
+The filter() method takes each element in an array and it applies a conditional statement against it. If this conditional returns true, the element gets pushed to the output array. If the condition returns false, the element does not get pushed to the output array.
+
+const numbers = [1, 2, 3, 4];
+const evens = numbers.filter(item => item % 2 === 0);
+console.log(evens); // [2, 4]
+
+#reduce()
+The reduce() method reduces an array of values down to just one value. To get the output value, it runs a reducer function on each element of the array.
+
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce(function (result, item) {
+return result + item;
+}, 0);
+console.log(sum); // 10
+
+#difference between JSON and object
+
+The only noticeable difference is that all names in JSON must be wrapped in double quotes. If you create an object using JSON format, javascript engine treats it the same as you would have created the object using the object literal. Safe to say that all JSON data are valid Javascript object.
+
+# hoisting
+
+# deep copy vs shallow copy
+
+When a reference variable is copied into a new reference variable using the assignment operator, a shallow copy of the referenced object is created. In simple words, a reference variable mainly stores the address of the object it refers to. When a new reference variable is assigned the value of the old reference variable, the address stored in the old reference variable is copied into the new one. This means both the old and new reference variable point to the same object in memory.
+
+deep copy makes a copy of all the members of the old object, allocates separate memory location for the new object and then assigns the copied members to the new object. In this way, both the objects are independent of each other and in case of any modification to either one the other is not affected.
+JSON.parse(JSON.stringify(person))
+lodash is better for deepcopy
+
+#typeof null
+Object
+
+#object.freeze vs object.seal
+Object.seal() - Can modify existing property but cannot add/delete any property
+Object.freeze()- immune to any change
+
+#setTimeout, setInterval
+function sayHi() {
+alert('Hello');
+}
+
+setTimeout(sayHi, 1000);
+
+let timerId = setTimeout(...);
+clearTimeout(timerId);
+
+setInterval(function, milliseconds);
+
+#what does redux do?
+Redux is a predictable state container for JavaScript apps.
+Components of redux: Store, Action and Reducer
+
+#http method type of method?
+GET,POST,PUT, DELETE
+
+#lazy loading, view child
+lazy loading means that a component or a part of code must get loaded when it is required. It is also referred to as code splitting and data fetching.
+const Admin = React.lazy(() => import("./Customer.js"));
+
+<Suspense fallback={<div>Loading</div>}>
+<Admin />
+</Suspense>
+
+1. Tell me about your UI Experience, total years etc?
+   Q02. Spread Operator, what kind of copy it creates.
+   The spread operator makes deep copies of data if the data is not nested. When you have nested data in an array or object the spread operator will create a deep copy of the top most data and a shallow copy of the nested data.
+
+Q03. Whats the difference between deep copy and shallow copy?
+Q04. If spread operator makes shallow copy, how to make deep copy?
+Q05. Write a program to make a deep copy of nested objects.
+Q06. What is Hoisting? How to prevent Hoisting?
+Q07. Exercise and what it will print in console. @ 13:13
+Q08. Arrow functions?
+Q09. How legacy JavaScript functions retain scope in Q7
+Q10. What does bind function in react does?
+Q11. bind, call and apply
+Q12. @ 16.53 How will you bind this object with the greeting function?
+Q13. Gice count of duplicate items in an array, what set does? Give me a count!
+Q14. What is shadow DOM?
+Q15. What are callbacks?
+Q16. What is event loop and is javascript is synchronous or asynchronous and how to make it asynchronous?
+Q17. Lifecycle methods of react and tell the order of execution.
+Q18. What are Higher Order Components?
+Q19. What are props?
+Q20. Difference between state and props?
+Q21. What are Observables?
+Q22. What is redux? Explain the state management architect.
+Q23. Conditionally rendering component in React
+Q24. Decorators in react
+Q25. Server Side Rendering.
+Q24. How to call an API is React!
+
+event bubbling

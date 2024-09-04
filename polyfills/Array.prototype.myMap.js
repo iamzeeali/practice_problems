@@ -1,18 +1,30 @@
 Array.prototype.myMap = function (callbackFn, thisArg) {
-    if (this == null) {
-        throw new TypeError("myMap called on null or undefined");
-    } if (typeof callbackFn !== 'function') {
-        throw new TypeError(callbackFn + 'is not a function');
+    // Ensure callbackFn is a function
+    if (
+        typeof callbackFn !== "function" ||
+        !callbackFn.call ||
+        !callbackFn.apply
+    ) {
+        throw new TypeError(`${callbackFn} is not a function`);
     }
 
-    const result = [];
-    for (let i = 0; i < this.length; i++) {
-        // . Check if there is any holes in the array then push.
-        if (i in this) {
-            result.push(callbackFn.call(thisArg, this[i], i, this))
+    const len = this.length; // Get the length of the array
+    const A = new Array(len); // Create a new array with the same length
+    let k = 0; // Initialize the index
+
+    // Iterate over the array
+    while (k < len) {
+        // Check if the index exists in the array (handles sparse arrays)
+        const kPresent = Object.hasOwn(this, k);
+        if (kPresent) {
+            const kValue = this[k]; // Get the value at index k
+            const mappedValue = callbackFn.call(thisArg, kValue, k, this); // Apply the callback function
+            A[k] = mappedValue; // Store the result in the new array
         }
+        k = k + 1; // Move to the next index
     }
-    return result;
+
+    return A; // Return the new array with mapped values
 };
 
 

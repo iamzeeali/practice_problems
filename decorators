@@ -1,0 +1,91 @@
+### What Are Decorators?
+
+In programming, a **decorator** is a design pattern used to add behavior or modify the functionality of functions or classes. Decorators allow you to wrap a function or method in another function that can add or alter its behavior without changing the original function's code.
+
+#### Decorators in JavaScript
+
+In JavaScript, decorators are still a stage 2 proposal in the TC39 process (as of 2024) and are not yet part of the official ECMAScript standard. However, they are used in some frameworks like Angular and with tools like Babel to extend the functionality of classes and methods.
+
+A decorator is typically a higher-order function that takes a function or class as an argument and returns a new function or class with added behavior.
+
+#### Example of a Function Decorator
+
+Here’s a simple example of a function decorator in JavaScript:
+
+```javascript
+function loggerDecorator(fn) {
+  return function(...args) {
+    console.log(`Calling function ${fn.name} with arguments:`, args);
+    const result = fn(...args);
+    console.log(`Function ${fn.name} returned:`, result);
+    return result;
+  };
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+const decoratedAdd = loggerDecorator(add);
+decoratedAdd(2, 3);
+// Output:
+// Calling function add with arguments: [2, 3]
+// Function add returned: 5
+```
+
+**Explanation:**
+- `loggerDecorator` is a decorator function that wraps the `add` function.
+- It logs the function name and arguments before calling the original function and logs the result afterward.
+- The `decoratedAdd` function now has additional logging behavior, but the original `add` function remains unchanged.
+
+#### Example of a Class Method Decorator
+
+For class methods, decorators can be used to modify or enhance methods in a class. Here's an example using a custom decorator:
+
+```javascript
+function readonly(target, key, descriptor) {
+  descriptor.writable = false;
+  return descriptor;
+}
+
+class Example {
+  @readonly
+  name() {
+    return 'This is an example';
+  }
+}
+
+const example = new Example();
+console.log(example.name()); // Output: This is an example
+example.name = function() { return 'Modified'; }; // Error: Cannot assign to read only property 'name'
+```
+
+**Explanation:**
+- `readonly` is a decorator that modifies the descriptor of the `name` method to make it non-writable.
+- Applying `@readonly` before the method definition prevents the method from being reassigned, preserving its original implementation.
+
+### Key Points About Decorators
+
+1. **Code Reusability:**  
+   Decorators allow you to reuse code across multiple functions or methods, adding common behavior without repeating the code.
+
+2. **Separation of Concerns:**  
+   They help keep the core logic of your functions or classes clean and focused by separating the additional behavior into decorators.
+
+3. **Meta-Programming:**  
+   Decorators provide a powerful way to perform meta-programming, where you can modify or extend the behavior of code at runtime.
+
+4. **Stage 2 Proposal:**  
+   As mentioned, decorators are still a proposal in JavaScript, so they are not officially part of the language yet. However, they are widely used in certain frameworks and libraries.
+
+### Use in Frameworks
+
+- **Angular:**  
+  Angular uses decorators extensively to define components, services, modules, etc. For example, `@Component` and `@Injectable` are decorators that provide metadata to Angular classes.
+
+- **React (Higher-Order Components - HOCs):**  
+  Although not decorators in the traditional sense, Higher-Order Components (HOCs) in React serve a similar purpose by wrapping components to add additional functionality.
+
+### Conclusion
+
+Decorators are a powerful tool for adding behavior to functions and methods in a clean, reusable way. While they are not yet part of the official JavaScript language, they are widely used in certain frameworks and have significant potential once they become standardized.
